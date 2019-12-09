@@ -14,6 +14,16 @@
             { "source": "url", "name": "name" }
         ],
         "include-command-output-in-response": true,
-        "include-command-output-in-response-on-error": true
+        "include-command-output-in-response-on-error": true,
+        "trigger-rule": {
+            "match": {
+                "type": "value",
+                "value": "9074aa54d80404921881b2dd382c5f3124234a020cfb63ed26678dc082926339",
+                "parameter": {
+                    "source": "url",
+                    "name": "apikey"
+                }
+            }
+        }
     }
 ]
