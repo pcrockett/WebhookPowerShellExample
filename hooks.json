@@ -10,7 +10,8 @@
             { "source": "string", "name": "RemoteSigned" },
             { "source": "string", "name": "-NonInteractive" },
             { "source": "string", "name": "-Command" },
-            { "source": "string", "name": ".\\test-hook.ps1" }
+            { "source": "string", "name": ".\\test-hook.ps1" },
+            { "source": "url", "name": "name" }
         ],
         "include-command-output-in-response": true,
         "include-command-output-in-response-on-error": true
