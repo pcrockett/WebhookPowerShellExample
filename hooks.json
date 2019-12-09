@@ -1,7 +1,6 @@
 [
     {
         "id": "test-hook",
-        "command-working-directory": "C:\\Users\\pcrockett\\Desktop\\webhook",
         "execute-command": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
         "pass-arguments-to-command": [
             { "source": "string", "name": "-NoLogo" },
@@ -11,19 +10,10 @@
             { "source": "string", "name": "-NonInteractive" },
             { "source": "string", "name": "-Command" },
             { "source": "string", "name": ".\\test-hook.ps1" },
-            { "source": "url", "name": "name" }
+            { "source": "url", "name": "name" },
+            { "source": "string", "name": "-ApiKey" },
+            { "source": "url", "name": "apikey" }
         ],
-        "include-command-output-in-response": true,
-        "include-command-output-in-response-on-error": true,
-        "trigger-rule": {
-            "match": {
-                "type": "value",
-                "value": "9074aa54d80404921881b2dd382c5f3124234a020cfb63ed26678dc082926339",
-                "parameter": {
-                    "source": "url",
-                    "name": "apikey"
-                }
-            }
-        }
+        "include-command-output-in-response": true
     }
 ]

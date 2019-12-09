@@ -4,7 +4,11 @@ param()
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version 5.0
 
-$webhookExe = Join-Path $PSScriptRoot "webhook.exe"
-$hookConfig = Join-Path $PSScriptRoot "hooks.json"
+# We have some relative file paths in our config. Make sure they resolve correctly.
+Push-Location $PSScriptRoot
 
-& $webhookExe -hooks $hookConfig -verbose
+try {
+    .\webhook.exe -hooks .\hooks.json -verbose
+} finally {
+    Pop-Location
+}
