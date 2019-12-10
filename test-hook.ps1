@@ -1,11 +1,5 @@
 [CmdletBinding()]
-param(
-    [Parameter(Mandatory=$True)]
-    [string]$ApiKey,
-
-    [Parameter()]
-    [string]$Name = "World"
-)
+param()
 
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version 5.0
@@ -23,8 +17,12 @@ function isApiKeyCorrect() {
     # what API key the user (or attacker) gives us, the comparison will take
     # the same amount of time.
 
+    if (!$env:HOOK_apikey) {
+        throw "Did not find ""HOOK_apikey"" environment variable."
+    }
+
     $a = [Text.Encoding]::ASCII.GetBytes($ExpectedApiKey.ToLowerInvariant())
-    $b = [Text.Encoding]::ASCII.GetBytes($ApiKey.ToLowerInvariant())
+    $b = [Text.Encoding]::ASCII.GetBytes($env:HOOK_apikey.ToLowerInvariant())
 
     [UInt32]$diff = $a.Length -bxor $b.Length
     if ($diff -ne 0) {
@@ -32,7 +30,7 @@ function isApiKeyCorrect() {
     }
 
     for ($i = 0; $i -lt $a.Length; $i++) {
-        $charDiff = [UInt32]($a[$i] -bxor $b[$i])
+        [UInt32]$charDiff = $a[$i] -bxor $b[$i]
         $diff = $diff -bor $charDiff
     }
 
@@ -43,4 +41,9 @@ if (-not (isApiKeyCorrect)) {
     throw "Invalid API key"
 }
 
-Write-Host "Hello $Name, this is a test hook."
+$name = $env:HOOK_name
+if (!$name) {
+    $name = "World"
+}
+
+Write-Host "Hello $name, this is a test hook."

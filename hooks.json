@@ -8,10 +8,11 @@
             { "source": "string", "name": "-ExecutionPolicy" },
             { "source": "string", "name": "RemoteSigned" },
             { "source": "string", "name": "-NonInteractive" },
-            { "source": "string", "name": "-Command" },
-            { "source": "string", "name": ".\\test-hook.ps1" },
+            { "source": "string", "name": "-File" },
+            { "source": "string", "name": ".\\test-hook.ps1" }
+        ],
+        "pass-environment-to-command": [
             { "source": "url", "name": "name" },
-            { "source": "string", "name": "-ApiKey" },
             { "source": "url", "name": "apikey" }
         ],
         "include-command-output-in-response": true
