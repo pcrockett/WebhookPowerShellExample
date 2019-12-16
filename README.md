@@ -14,10 +14,10 @@ Invoke-RestMethod "http://localhost:9000/hooks/test-hook?apikey=9074aa54d8040492
 Security
 --------
 
-I do not trust my PowerShell coding abilities, nor PowerShell itself, to be 100% confident that this is actually secure. Use your own best judgment, and use at your own risk. That said...
+Use your own best judgment, and use at your own risk. Here are some very important things to think about when taking this and adapting it for your needs:
 
-* Avoid passing parameters to the PowerShells script in `hook.json` via the command line! This is _incredibly_ easy to mess up and allows remote users to execute arbitrary commands.* It opens the door for injection attacks, similar to SQL injection, but far worse.
-* To help prevent timing attacks, we've implemented the API key check in the actual PowerShell script. [Don't use the `match` trigger rule][5] documented in `webhook` docs.
+* Avoid passing parameters to the PowerShells script in `hook.json` via the command line! This is _incredibly_ easy to mess up and allows remote users to execute arbitrary commands. It opens the door for injection attacks, similar to SQL injection, but far worse.*
+* There was once a [timing attack problem with `webhook`][5] which forced us to write some gross API key comparison code manually in PowerShell. However that has been fixed, so we can trust `webhook` to handle the API key for us.
 * If you connect this to the Internet, modify this so it uses HTTPS. And you might consider putting it behind a reverse proxy like Nginx.
 * Don't return error messages to the user when the script fails. PowerShell failure messages reveal too many details about the inner workings and organization of the server that this is running on.
 

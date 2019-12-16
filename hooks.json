@@ -15,6 +15,17 @@
             { "source": "url", "name": "name" },
             { "source": "url", "name": "apikey" }
         ],
-        "include-command-output-in-response": true
+        "include-command-output-in-response": true,
+        "trigger-rule": {
+            "match": {
+                "type": "value",
+                "value": "{{ getenv "WEBHOOK_APIKEY" | js }}",
+                "parameter": {
+                    "source": "url",
+                    "name": "apikey"
+                }
+            }
+        },
+        "trigger-rule-mismatch-http-response-code": 401
     }
 ]
